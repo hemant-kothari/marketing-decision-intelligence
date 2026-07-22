@@ -1,0 +1,24 @@
+# Minimal project + tooling config. We keep dependencies in requirements.txt (simple
+# to read and install); this file only holds metadata and linter settings.
+
+[project]
+name = "mdip"
+version = "0.1.0"
+description = "Marketing Decision Intelligence Platform — causal inference & uplift on the Hillstrom email dataset"
+requires-python = ">=3.12"
+
+[tool.ruff]
+line-length = 100
+target-version = "py312"
+
+[tool.ruff.lint]
+select = ["E", "F", "I", "W"]  # errors, pyflakes, import-sorting, warnings
+
+[tool.ruff.lint.per-file-ignores]
+# scripts/ and tests/ add src/ to sys.path before importing mdip, so imports
+# legitimately appear after code. That is intentional, not a mistake.
+"scripts/*" = ["E402"]
+"tests/*" = ["E402"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]

@@ -32,9 +32,9 @@ class Paths:
 
 @dataclass(frozen=True)
 class DataCfg:
-    source_url: str
     treatment_col: str
     control_label: str
+    treated_labels: list[str]
     primary_outcome: str
     outcomes: list[str]
 

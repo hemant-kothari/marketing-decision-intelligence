@@ -15,13 +15,15 @@ paths:
   figures_dir: "artifacts/figures"
 
 data:
-  # Public mirror of the Hillstrom MineThatData E-Mail Analytics challenge dataset.
-  source_url: "https://raw.githubusercontent.com/ronikobrosly/DoWhy_estimation_methods/main/data/hillstrom.csv"
-  # Treatment column and how we collapse the 3-arm experiment to binary for the
-  # ATE backbone. 'Mens E-Mail' + 'Womens E-Mail' -> treated(1); 'No E-Mail' -> control(0).
+  # Hillstrom MineThatData E-Mail Analytics dataset, fetched via the scikit-uplift
+  # loader (sklift.datasets.fetch_hillstrom). We cache it once to data/raw/hillstrom.csv
+  # so the rest of the project reads a stable local file and never re-downloads.
   treatment_col: "segment"
   control_label: "No E-Mail"
-  # Outcomes, in order of statistical power (see ROADMAP §Dataset).
+  # How we collapse the 3-arm experiment to binary: 'Mens E-Mail' + 'Womens E-Mail'
+  # -> treated(1); 'No E-Mail' -> control(0).
+  treated_labels: ["Mens E-Mail", "Womens E-Mail"]
+  # Outcomes, in order of statistical power (see ROADMAP, Dataset section).
   primary_outcome: "visit"
   outcomes: ["visit", "conversion", "spend"]
 
