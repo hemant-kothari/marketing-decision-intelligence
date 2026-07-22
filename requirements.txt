@@ -1,0 +1,43 @@
+# Marketing Decision Intelligence Platform — dependencies
+# Python 3.12. Install:  python -m venv .venv && .venv/Scripts/pip install -r requirements.txt
+#
+# CausalML is intentionally excluded (poor 3.12 / Windows support); EconML +
+# scikit-uplift cover every uplift model, and we implement one T-learner by hand.
+
+# --- data & arrays ---
+pandas
+numpy
+pyarrow
+
+# --- SQL analytics ---
+duckdb
+
+# --- statistics ---
+scipy
+statsmodels
+
+# --- machine learning ---
+scikit-learn
+lightgbm
+shap
+
+# --- causal inference & uplift ---
+dowhy
+econml
+scikit-uplift
+
+# --- visualization ---
+matplotlib
+seaborn
+plotly
+
+# --- app ---
+streamlit
+
+# --- config & quality ---
+pyyaml
+pydantic
+pytest
+ruff
+tabulate
+requests

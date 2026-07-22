@@ -1,0 +1,34 @@
+# ─────────────────────────────────────────────────────────────────────────────
+# Project configuration — one flat YAML, loaded into a typed dataclass.
+# We deliberately avoid Hydra / heavy config frameworks: for a project this size
+# a single readable file is easier to explain in an interview than a config tree.
+# ─────────────────────────────────────────────────────────────────────────────
+
+project_name: "Marketing Decision Intelligence Platform"
+seed: 42                     # single global seed → reproducible experiments
+
+paths:
+  raw_data: "data/raw/hillstrom.csv"
+  processed_dir: "data/processed"
+  duckdb: "data/mdip.duckdb"
+  artifacts_dir: "artifacts"
+  figures_dir: "artifacts/figures"
+
+data:
+  # Public mirror of the Hillstrom MineThatData E-Mail Analytics challenge dataset.
+  source_url: "https://raw.githubusercontent.com/ronikobrosly/DoWhy_estimation_methods/main/data/hillstrom.csv"
+  # Treatment column and how we collapse the 3-arm experiment to binary for the
+  # ATE backbone. 'Mens E-Mail' + 'Womens E-Mail' -> treated(1); 'No E-Mail' -> control(0).
+  treatment_col: "segment"
+  control_label: "No E-Mail"
+  # Outcomes, in order of statistical power (see ROADMAP §Dataset).
+  primary_outcome: "visit"
+  outcomes: ["visit", "conversion", "spend"]
+
+stats:
+  alpha: 0.05               # significance level
+  n_bootstrap: 10000        # bootstrap resamples for CIs
+  mde_lift: 0.01            # minimum detectable effect for power analysis (1 pp)
+
+logging:
+  level: "INFO"
