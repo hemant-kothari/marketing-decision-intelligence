@@ -34,6 +34,12 @@ plotly
 # --- app ---
 streamlit
 
+# --- notebooks (analysis narrative is a first-class deliverable) ---
+nbformat
+nbconvert
+ipykernel
+jupyterlab
+
 # --- config & quality ---
 pyyaml
 pydantic
